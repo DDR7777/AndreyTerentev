@@ -22,20 +22,96 @@
             <scope>test</scope>
         </dependency>
 
-            </dependencies>
+        <dependency>
+            <groupId>com.mylib</groupId>
+            <artifactId>calculator</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.8</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+
+        <profile>
+            <id>AllTests</id>
+            <properties>
+                <run.xml.suite>${project.build.directory}/test-classes/AllTestsSuite.xml</run.xml.suite>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>SumAndSub</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <run.xml.suite>${project.build.directory}/test-classes/AddAndSubtructTestsSuite.xml</run.xml.suite>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>MultAndDivide</id>
+            <properties>
+                <run.xml.suite>${project.build.directory}/test-classes/MultDivideTestsSuite.xml</run.xml.suite>
+            </properties>
+        </profile>
+
+    </profiles>
 
     <build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.22.2</version>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${run.xml.suite}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>install-external</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${basedir}/lib/calculator-1.0.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>com.mylib</groupId>
+                            <artifactId>calculator</artifactId>
+                            <version>1.0</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
 
-        </plugin>
-    </plugins>
+        </plugins>
     </build>
-
 
 
 </project>
