@@ -1,5 +1,6 @@
 package hw2.ex1;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,8 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import javax.lang.model.util.Elements;
@@ -30,13 +30,16 @@ public class HomePageContentTest {
 
     WebDriver driver;
 
-    @BeforeSuite
-    public void beforeSuite() {
+    @BeforeClass
+    public void beforeClass() {
+        WebDriverManager.chromedriver().setup();
+    }
 
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+    @BeforeMethod
+    public void beforeMethod() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     @Test
@@ -44,7 +47,6 @@ public class HomePageContentTest {
         SoftAssert softAssert = new SoftAssert();
         // 1 Open test site by URL
         driver.navigate().to("https://jdi-testing.github.io/jdi-light/index.html");
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         // 2 Assert Browser title
         softAssert.assertEquals(driver.getTitle(), "Home Page", "Browser title");
@@ -112,9 +114,12 @@ public class HomePageContentTest {
             softAssert.assertTrue(leftElementsText.contains(element.getText()));
         }
 
+        softAssert.assertAll();
+
+    }
+    @AfterMethod
+    public void afterMethod(){
         // 12 Close Browser
         driver.close();
-
-        softAssert.assertAll();
     }
 }

@@ -1,13 +1,12 @@
 package hw2.ex2;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.util.concurrent.TimeUnit;
@@ -15,13 +14,16 @@ import java.util.concurrent.TimeUnit;
 public class HomePageActionsTest {
     WebDriver driver;
 
-    @BeforeSuite
-    public void beforeSuite() {
+    @BeforeClass
+    public void beforeClass() {
+        WebDriverManager.chromedriver().setup();
+    }
 
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+    @BeforeMethod
+    public void beforeMethod() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     @Test
@@ -66,10 +68,10 @@ public class HomePageActionsTest {
         Assert.assertTrue(driver.findElement(By.xpath("//ul[contains(@class, 'logs')]/li[contains(text(), 'metal') and contains(text(), 'Selen')]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//ul[contains(@class, 'logs')]/li[contains(text(), 'Colors') and contains(text(), 'Yellow')]")).isDisplayed());
     }
-    // 10 Close Browser
-    @AfterSuite
-    public  void afterSuite() {
 
+    // 10 Close Browser
+    @AfterMethod
+    public void afterMethod(){
         driver.close();
     }
 }
