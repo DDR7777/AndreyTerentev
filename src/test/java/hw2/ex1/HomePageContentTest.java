@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class HomePageContentTest {
-    private List<String> headerElementsText = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
+    private final List<String> headerElementsText = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
 
-    private List<String> leftElementsText = Arrays.asList("Home", "Contact form", "Service", "Metals & Colors", "Elements packs");
+    private final List<String> leftElementsText = Arrays.asList("Home", "Contact form", "Service", "Metals & Colors", "Elements packs");
 
 
-    private List<String> imagesText = Arrays.asList("To include good practices\nand ideas from successful\nEPAM project",
+    private final List<String> imagesText = Arrays.asList("To include good practices\nand ideas from successful\nEPAM project",
             "To be flexible and\ncustomizable",
             "To be multiplatform",
             "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…");
