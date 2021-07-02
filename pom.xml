@@ -23,39 +23,61 @@
         </dependency>
 
         <dependency>
-            <groupId>com.mylib</groupId>
+          <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+      
+      <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>4.4.3</version>
+          </dependency>
+      
+      <dependency>
+        <groupId>com.mylib</groupId>
             <artifactId>calculator</artifactId>
             <version>1.0</version>
         </dependency>
-
-        <dependency>
+      
+         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.9.8</version>
             <scope>test</scope>
-        </dependency>
+         </dependency>
 
     </dependencies>
 
     <profiles>
 
         <profile>
-            <id>AllTests</id>
+          <id>HW2</id>
+          <properties>
+            <run.xml.suite>${project.build.directory}/test-classes/HW2Suite.xml</run.xml.suite>
+          </properties>
+         </profile>
+          
+       <profile>
+         <id>AllTests</id>
             <properties>
                 <run.xml.suite>${project.build.directory}/test-classes/AllTestsSuite.xml</run.xml.suite>
             </properties>
         </profile>
-
-        <profile>
+      
+      <profile>
             <id>SumAndSub</id>
+        
+
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <run.xml.suite>${project.build.directory}/test-classes/AddAndSubtructTestsSuite.xml</run.xml.suite>
+              <run.xml.suite>${project.build.directory}/test-classes/AddAndSubtructTestsSuite.xml</run.xml.suite>
             </properties>
         </profile>
-
+      
         <profile>
             <id>MultAndDivide</id>
             <properties>
