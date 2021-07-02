@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Mult And Divide Suite">
+    <test name="Mult And Divide Suite">
+
+        <classes>
+            <class name="ru.training.at.hw1.MultTests"/>
+            <class name="ru.training.at.hw1.DivideTests"/>
+        </classes>
+
+    </test>
+</suite> <!-- Suite -->
