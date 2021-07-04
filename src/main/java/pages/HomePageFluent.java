@@ -1,7 +1,9 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
@@ -42,14 +44,30 @@ public class HomePageFluent {
     @FindBy(css = "ul.sidebar-menu.left>li")
     public List<WebElement> leftElements;
 
-    public HomePageFluent() {
-        pri
+    private WebDriver driver;
+
+    public HomePageFluent(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    public void login(String name, String password) {
+    public HomePageFluent navigate() {
+        driver.navigate().to("https://jdi-testing.github.io/jdi-light/index.html");
+        return this;
+    }
+
+    public HomePageFluent login(String name, String password) {
         profile.click();
         username.sendKeys(name);
         this.password.sendKeys(password);
         submitButton.click();
+        return this;
+    }
+
+    public DifferentElementsPageFluent openDifferentElementsPage() {
+        headerMenuService.click();
+        differentElementItem.click();
+        return new DifferentElementsPageFluent(driver);
     }
 }
+

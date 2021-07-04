@@ -53,10 +53,10 @@ public class HomePageContentTest extends BaseTest {
         softAssert.assertEquals(driver.getTitle(), "Home Page", "Browser title");
 
         // 3 Perform login
-        homePage.login("Roman", "Jdi1234");
+        homePage.login(name, password);
 
         // 4 Assert Username is loggined
-        softAssert.assertEquals(homePage.fullname.getText(), "ROMAN IOVLEV");
+        softAssert.assertEquals(homePage.fullname.getText(), fullname);
 
         // 5 Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> headerElements = homePage.headerElements;

@@ -39,10 +39,10 @@ import java.util.concurrent.TimeUnit;
             softAssert.assertEquals(driver.getTitle(), "Home Page", "Browser title");
 
             // 3 Perform login
-            homePage.login("Roman", "Jdi1234");
+            homePage.login(name, password);
 
             // 4 Assert Username is loggined
-            softAssert.assertEquals(homePage.fullname.getText(), "ROMAN IOVLEV");
+            softAssert.assertEquals(homePage.fullname.getText(), fullname);
 
             // 5 Open through the header menu Service -> Different Elements Page
             homePage.headerMenuService.click();

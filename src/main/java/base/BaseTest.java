@@ -17,12 +17,16 @@ public class BaseTest {
     @BeforeSuite
     public void beforeSuite() {
         WebDriverManager.chromedriver().setup();
+        readUserProperties();
     }
+
     private void readUserProperties(){
         try (InputStream inputStream = new FileInputStream("src/main/resources/user.properties")) {
             Properties properties = new Properties();
             properties.load(inputStream);
-            name = properties.getProperty("name");
+            name = properties.getProperty("user");
+            password = properties.getProperty("password");
+            fullname = properties.getProperty("fullname");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
