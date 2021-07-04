@@ -6,6 +6,7 @@
         <classes>
             <class name="hw3.ex1.HomePageContentTest"/>
             <class name="hw3.ex2.HomePageActionsTest"/>
+            <class name="hw3.bonus.HomePageFluentActionsTest"/>
         </classes>
     </test>
 </suite> <!-- Suite -->
