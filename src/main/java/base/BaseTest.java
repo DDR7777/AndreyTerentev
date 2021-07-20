@@ -2,10 +2,7 @@ package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.FileInputStream;
@@ -13,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     public String name;
@@ -31,12 +27,7 @@ public class BaseTest {
         readUserProperties();
     }
 
-    @BeforeMethod
-    public void beforeMethod() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
+
 
     private void readUserProperties() {
         try (InputStream inputStream = new FileInputStream("src/main/resources/user.properties")) {
@@ -52,8 +43,5 @@ public class BaseTest {
         }
     }
 
-    @AfterMethod
-    public void afterMethod() {
-        driver.close();
-    }
+
 }

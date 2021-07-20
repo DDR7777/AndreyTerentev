@@ -1,14 +1,12 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -33,6 +31,9 @@ public class HomePage {
     @FindBy(xpath = "//ul[@class='dropdown-menu']//a[@href='different-elements.html']")
     public WebElement differentElementItem;
 
+    @FindBy(xpath = "//ul[@class='dropdown-menu']//a[@href='user-table.html']")
+    public WebElement userTableItem;
+
     // 6
     @FindBy(css = "span.icons-benefit")
     public List<WebElement> images;
@@ -49,7 +50,7 @@ public class HomePage {
     @FindBy(css = "ul.sidebar-menu.left>li")
     public List<WebElement> leftElements;
 
-    private WebDriver driver;
+        private WebDriver driver;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -58,7 +59,7 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    @Step("Login with username {0}")
+
     public void login(String name, String password) {
         profile.click();
         username.sendKeys(name);
@@ -67,7 +68,7 @@ public class HomePage {
     }
 
     @Step("Open Home page")
-    public void navigate() {
+        public void navigate() {
         driver.navigate().to("https://jdi-testing.github.io/jdi-light/index.html");
     }
 
@@ -77,13 +78,24 @@ public class HomePage {
         differentElementItem.click();
     }
 
+    @Step("Open Service menu in Header")
+    public void openHeaderMenuService() {
+        headerMenuService.click();
+    }
+
+    @Step("Open User Table Page")
+    public void openUserTablePage(){
+        userTableItem.click();
+    }
+
+
     @Step("Check that Page title is {0}")
     public void checkPageTitle(String expected) {
         Assert.assertEquals(driver.getTitle(), expected, "Browser title");
 
     }
 
-    @Step("Check that loggined user is {0}")
+        @Step("Check that loggined user is {0}")
     public void checkUserIsLoggined(String expected) {
         Assert.assertEquals(fullname.getText(), expected);
     }

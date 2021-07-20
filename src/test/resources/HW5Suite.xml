@@ -4,9 +4,8 @@
     <test name="All Tests Suite">
 
         <classes>
-            <class name="hw4.ex1.HomePageContentTest"/>
-            <class name="hw4.ex2.HomePageActionsTest"/>
-            <class name="hw4.failed.HomePageContentFailedTest"/>
+            <class name="hw5.ex1.HomePageActionsTest"/>
+            <class name="base.RunnerTest"/>
         </classes>
     </test>
 </suite> <!-- Suite -->
