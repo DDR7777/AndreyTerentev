@@ -6,7 +6,7 @@ import com.epam.jdi.uitests.web.selenium.elements.complex.Dropdown;
 import com.epam.jdi.uitests.web.selenium.elements.complex.RadioButtons;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
-import dto.MetalsAndColorsData;
+import entity.MetalsAndColorsData;
 import enums.Color;
 import enums.Element;
 import enums.Even;
