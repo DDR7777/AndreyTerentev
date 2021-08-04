@@ -1,17 +1,10 @@
-package hw4.ex2;
+package hw8.ex2;
 
 import base.AllureAttachmentListener;
 import base.BaseTest;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
 import pages.DifferentElementsPage;
 import pages.HomePage;
-
-import java.util.concurrent.TimeUnit;
 
 @Listeners(AllureAttachmentListener.class)
 public class HomePageActionsTest extends BaseTest {

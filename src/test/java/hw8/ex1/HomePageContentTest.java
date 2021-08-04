@@ -1,11 +1,10 @@
-package hw4.failed;
+package hw8.ex1;
 
 import base.AllureAttachmentListener;
 import base.BaseTest;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.HomePage;
 
 import java.util.Arrays;
@@ -14,8 +13,8 @@ import java.util.List;
 @Feature("Home Page Smoke Tests")
 @Story("Home Page Action Testing")
 @Listeners(AllureAttachmentListener.class)
-public class HomePageContentFailedTest extends BaseTest {
-    private final List<String> headerElementsText = Arrays.asList("HOME1", "CONTACT FORM1", "SERVICE", "METALS & COLORS");
+public class HomePageContentTest extends BaseTest {
+    private final List<String> headerElementsText = Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS");
 
     private final List<String> leftElementsText = Arrays.asList("Home", "Contact form", "Service", "Metals & Colors", "Elements packs");
 
