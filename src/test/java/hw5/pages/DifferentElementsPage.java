@@ -1,6 +1,5 @@
-package pages;
+package hw5.pages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,7 +34,6 @@ public class DifferentElementsPage {
         PageFactory.initElements(driver, this);
     }
 
-    @Step("Select Checkbox with label {0}")
     public void clickCheckbox(String label) {
         for (WebElement checkbox : checkboxes) {
             if (checkbox.getText().trim().equals(label)) {
@@ -45,7 +43,6 @@ public class DifferentElementsPage {
         }
     }
 
-    @Step("Select Radio button ")
     public void clickRadioButton(String label) {
         for (WebElement radioButton : radioButtons) {
             if (radioButton.getText().trim().equals(label)) {
@@ -55,7 +52,6 @@ public class DifferentElementsPage {
         }
     }
 
-    @Step
     public void selectDropdownItem(String label) {
         Select color = new Select(dropdown);
         color.selectByVisibleText(label);
@@ -72,7 +68,6 @@ public class DifferentElementsPage {
         return false;
     }
 
-    @Step("Check Log with label {0} and value {1} is displayed")
     public void checkLogIsDisplayed(String label, String value){
         Assert.assertTrue(isLogDisplayed(label, value));
     }

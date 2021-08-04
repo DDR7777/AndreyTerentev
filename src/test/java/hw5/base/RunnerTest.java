@@ -1,4 +1,4 @@
-package base;
+package hw5.base;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeSuite;
 
 @CucumberOptions(
         features = "src/test/resources/cucumber_features",
-        glue = "steps"
+        glue = "hw5/steps"
 
 )
 public class RunnerTest extends AbstractTestNGCucumberTests {

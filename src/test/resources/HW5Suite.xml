@@ -4,8 +4,7 @@
     <test name="All Tests Suite">
 
         <classes>
-            <class name="hw5.ex1.HomePageActionsTest"/>
-            <class name="base.RunnerTest"/>
+            <class name="hw5.base.RunnerTest"/>
         </classes>
     </test>
 </suite> <!-- Suite -->

@@ -1,6 +1,5 @@
-package pages;
+package hw5.pages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -67,40 +66,33 @@ public class HomePage {
         submitButton.click();
     }
 
-    @Step("Open Home page")
         public void navigate() {
         driver.navigate().to("https://jdi-testing.github.io/jdi-light/index.html");
     }
 
-    @Step("Open Different Elements Page")
     public void openDifferentElementsPage() {
-        headerMenuService.click();
+//        headerMenuService.click();
         differentElementItem.click();
     }
 
-    @Step("Open Service menu in Header")
     public void openHeaderMenuService() {
         headerMenuService.click();
     }
 
-    @Step("Open User Table Page")
     public void openUserTablePage(){
         userTableItem.click();
     }
 
 
-    @Step("Check that Page title is {0}")
     public void checkPageTitle(String expected) {
         Assert.assertEquals(driver.getTitle(), expected, "Browser title");
 
     }
 
-        @Step("Check that loggined user is {0}")
     public void checkUserIsLoggined(String expected) {
         Assert.assertEquals(fullname.getText(), expected);
     }
 
-    @Step("Check Header elements")
     public void checkHeaderElements(List<String> headerElementsText) {
         softAssert.assertEquals(headerElements.size(), headerElementsText.size(), "4 items on the header section are displayed and they have proper texts");
         for (WebElement element : headerElements) {
@@ -109,7 +101,6 @@ public class HomePage {
         }
     }
 
-    @Step("Check images of Index page")
     public void checkImagesOfIndexPage(List<String> imagesText) {
         softAssert.assertEquals(images.size(), imagesText.size(), "4 images on the Index Page and they are displayed");
         for (WebElement image : images) {
@@ -117,7 +108,6 @@ public class HomePage {
         }
     }
 
-    @Step("Check text under images on Index page")
     public void checkTextUnderImagesOnIndexPage(List<String> underImagesText) {
         softAssert.assertEquals(textUnderImages.size(), underImagesText.size());
         for (WebElement text : textUnderImages) {
@@ -126,19 +116,16 @@ public class HomePage {
         }
     }
 
-    @Step("Check iframe exists")
     public void checkIFrameExist() {
         softAssert.assertTrue(iframe.isDisplayed());
     }
 
-    @Step("Switch to iframe and check FrameButton in iframe")
     public void checkFrameButtonInIframe() {
         driver.switchTo().frame(iframe);
         softAssert.assertTrue(frameButton.isDisplayed());
         driver.switchTo().defaultContent();
     }
 
-    @Step("Check left elements text on Index page")
     public void checkLeftSectionOnIndexPage(List<String> leftElementsText) {
         softAssert.assertEquals(leftElementsText.size(), leftElements.size());
         for (WebElement element : leftElements) {

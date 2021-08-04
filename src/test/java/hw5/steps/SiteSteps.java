@@ -1,4 +1,4 @@
-package steps;
+package hw5.steps;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
@@ -10,9 +10,9 @@ import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.DifferentElementsPage;
-import pages.HomePage;
-import pages.UserTable;
+import hw5.pages.DifferentElementsPage;
+import hw5.pages.HomePage;
+import hw5.pages.UserTable;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -63,26 +63,30 @@ public class SiteSteps {
     }
 
     @Step("Open Different Elements Page")
+    @And("I click on \"Different elements\" button in Service dropdown")
     public void openDifferentElementsPage() {
         homePage.openDifferentElementsPage();
     }
 
     @Step("Select Checkbox with label {0}") //?
+    @When("I select '(.+)' checkbox$")
     public void clickCheckbox(String label) {
         differentElementsPage.clickCheckbox(label);
     }
 
+    @And("I select '(.+)' radio$")
     public void clickRadioButton(String label){
         differentElementsPage.clickRadioButton(label);
     }
 
+    @And("I select '(.+)' dropdown$")
     public void selectDropdownItem(String label) {
         differentElementsPage.selectDropdownItem(label);
     }
 
-    public void checkLogIsDisplayed(String label, String value){
-        differentElementsPage.checkLogIsDisplayed(label, value);
-    }
+//    public void checkLogIsDisplayed(String label, String value){
+//        differentElementsPage.checkLogIsDisplayed(label, value);
+//    }
 
     @Step("Open Service menu in Header")
     @When("I click on \"Service\" button in Header")
@@ -127,8 +131,8 @@ public class SiteSteps {
     }
 
     @Step
-    @Then("(\\d+) log row has \"(.+): condition changed to (.+)\" text in log section$")
-    public void logRowHasText(int number, String label, String value) {
+    @Then("(\\d+) log row has \"(.+): (condition|value) changed to (.+)\" text in log section$")
+    public void logRowHasText(int number, String label, String condition, String value) {
         userTable.checkLogIsDisplayed(number, label, value);
     }
 

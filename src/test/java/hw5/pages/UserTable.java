@@ -1,4 +1,4 @@
-package pages;
+package hw5.pages;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Transpose;
