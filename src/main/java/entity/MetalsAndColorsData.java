@@ -1,18 +1,14 @@
 package entity;
 
-import com.epam.commons.DataClass;
-import enums.Color;
-import enums.Element;
-import enums.Metal;
-import enums.Vegetable;
+import com.epam.jdi.tools.DataClass;
 
 import java.util.List;
 
 public class MetalsAndColorsData extends DataClass {
 
     public List<Integer> summary;
-    public List<Element> elements;
-    public Color color;
-    public Metal metals;
-    public List<Vegetable> vegetables;
+    public List<String> elements;
+    public String color;
+    public String metals;
+    public List<String> vegetables;
 }

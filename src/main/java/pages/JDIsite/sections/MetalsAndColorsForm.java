@@ -1,68 +1,66 @@
 package pages.JDIsite.sections;
 
-import com.epam.jdi.uitests.web.selenium.elements.common.Button;
-import com.epam.jdi.uitests.web.selenium.elements.complex.CheckList;
-import com.epam.jdi.uitests.web.selenium.elements.complex.Dropdown;
-import com.epam.jdi.uitests.web.selenium.elements.complex.RadioButtons;
-import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
-import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
+import com.epam.jdi.light.elements.complex.Checklist;
+import com.epam.jdi.light.elements.complex.dropdown.Dropdown;
+import com.epam.jdi.light.elements.composite.Form;
+import com.epam.jdi.light.elements.pageobjects.annotations.locators.JDropdown;
+import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
+import com.epam.jdi.light.ui.html.elements.common.Button;
+import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
 import entity.MetalsAndColorsData;
-import enums.Color;
-import enums.Element;
-import enums.Even;
-import enums.Metal;
-import enums.Odd;
-import enums.Vegetable;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 public class MetalsAndColorsForm extends Form<MetalsAndColorsData> {
 
-    @FindBy(css = "#odds-selector p")
-    public RadioButtons<Odd> oddsSummary;
+    @UI("[name=custom_radio_odd]")
+    public RadioButtons oddsSummary;
 
-    @FindBy(css = "#even-selector p")
-    public RadioButtons<Even> evensSummary;
+    @UI("[name=custom_radio_even]")
+    public RadioButtons evensSummary;
 
-    @FindBy(css = "#elements-checklist p")
-    private CheckList<Element> elements;
-
-    @JDropdown(
-            root = @FindBy(id = "colors"),
-            list = @FindBy(tagName = "li"),
-            value = @FindBy(tagName = "button")
-    )
-    private Dropdown<Color> colors;
+    @FindBy(css = "#elements-checklist p input")
+    private Checklist elements;
 
     @JDropdown(
-            root = @FindBy(id = "metals"),
-            list = @FindBy(tagName = "li"),
-            expand = @FindBy(css = ".caret")
+            root = ".form-group.colors",
+            value = ".filter-option",
+            list = "a"
     )
-    private Dropdown<Metal> metals;
+    public Dropdown colors;
 
     @JDropdown(
-            root = @FindBy(id = "salad-dropdown"),
-            list = @FindBy(tagName = "li"),
-            value = @FindBy(css = "button")
+            root = ".form-group.metals",
+            list = "li",
+            expand = ".caret"
     )
-    private Dropdown<Vegetable> vegetables;
+    private Dropdown metals;
+
+    @JDropdown(
+            root = "#salad-dropdown",
+            list = "li",
+            value = ".dropdown-toggle"
+    )
+    private Dropdown vegetables;
 
     @FindBy(css = "#submit-button")
     private Button submit;
 
+    public MetalsAndColorsForm() {
+    }
+
     //methods
     @Override
     public void fill(MetalsAndColorsData entity) {
-        oddsSummary.select(Odd.getByValue(entity.summary.get(0)));
-        evensSummary.select(Even.getByValue(entity.summary.get(1)));
+        oddsSummary.select(String.valueOf(entity.summary.get(0)));
+        evensSummary.select(String.valueOf(entity.summary.get(1)));
 
-        elements.select(entity.elements.toArray(new Element[entity.elements.size()]));
+        elements.select(entity.elements.toArray(new String[0]));
         colors.select(entity.color);
         metals.select(entity.metals);
 
-        vegetables.select(Vegetable.VEGETABLES);
-        for (Vegetable vegetable : entity.vegetables) {
+        vegetables.select("Vegetables");
+        for (String vegetable : entity.vegetables) {
             vegetables.select(vegetable);
         }
     }

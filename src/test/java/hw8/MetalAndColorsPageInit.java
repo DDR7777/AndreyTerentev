@@ -1,14 +1,29 @@
 package hw8;
 
-import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
-import com.epam.jdi.uitests.web.testng.testRunner.TestNGBase;
+import com.epam.jdi.light.driver.WebDriverFactory;
+import com.epam.jdi.light.driver.WebDriverUtils;
+import com.epam.jdi.light.elements.composite.WebPage;
+import com.epam.jdi.light.elements.init.PageFactory;
+import entity.User;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import pages.JDIsite.JDISite;
 
-public class MetalAndColorsPageInit extends TestNGBase {
+import static pages.JDIsite.JDISite.homePage;
+import static pages.JDIsite.JDISite.login;
+
+public class MetalAndColorsPageInit {
 
     @BeforeSuite(alwaysRun = true)
     public static void setUp() {
-        WebSite.init(JDISite.class);
+        PageFactory.initSite(JDISite.class);
+        WebPage.openSite();
+        homePage.checkOpened();
+        login(new User());
+    }
+
+    @AfterSuite
+    public static void afterSuite() {
+        WebDriverUtils.killAllSeleniumDrivers();
     }
 }

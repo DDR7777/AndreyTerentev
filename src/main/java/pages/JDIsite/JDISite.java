@@ -1,25 +1,25 @@
 package pages.JDIsite;
 
 import base.Utils;
-import com.epam.jdi.uitests.web.selenium.elements.common.Label;
-import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
-import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
+import com.epam.jdi.light.elements.common.UIElement;
+import com.epam.jdi.light.elements.pageobjects.annotations.JSite;
+import com.epam.jdi.light.ui.html.elements.common.Text;
 import entity.MetalsAndColorsData;
 import entity.User;
-import enums.HeaderMenuItem;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import pages.JDIsite.pages.HomePage;
-import pages.MetalAndColorsPage;
 import pages.JDIsite.sections.Header;
 import pages.JDIsite.sections.LoginForm;
 import pages.JDIsite.sections.ResultSection;
-import base.Utils;
+import pages.MetalAndColorsPage;
+
+import java.util.stream.Collectors;
 
 import static org.testng.Assert.assertEquals;
 
-@JSite("https://epam.github.io/JDI/")
-public class JDISite extends WebSite {
+@JSite("https://jdi-testing.github.io/jdi-light/")
+public class JDISite {
 
     public static HomePage homePage;
     public static Header header;
@@ -28,23 +28,23 @@ public class JDISite extends WebSite {
     public static ResultSection resultSection;
 
     @FindBy(css = ".profile-photo")
-    public static Label profilePhoto;
+    public static UIElement profilePhoto;
 
     //methods
     @Step
     public static void login(User user) {
         profilePhoto.click();
-        loginForm.loginAs(user);
+        loginForm.submit(user);
     }
 
     @Step
-    public static void chooseHeaderMenu(HeaderMenuItem item) {
+    public static void chooseHeaderMenu(String item) {
         header.headerMenu.select(item);
     }
 
     //checks
     @Step
     public static void checkResultSectionContainsData(MetalsAndColorsData expectedData) {
-        assertEquals(resultSection.results.getTextList(), Utils.getExpectedResults(expectedData));
+        assertEquals(resultSection.results.stream().map(Text::getValue).collect(Collectors.toList()), Utils.getExpectedResults(expectedData));
     }
 }

@@ -1,16 +1,16 @@
 package pages.JDIsite.sections;
 
-import com.epam.jdi.uitests.web.selenium.elements.common.Button;
-import com.epam.jdi.uitests.web.selenium.elements.common.TextField;
-import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
+import com.epam.jdi.light.elements.composite.Form;
+import com.epam.jdi.light.ui.html.elements.common.Button;
+import com.epam.jdi.light.ui.html.elements.common.TextField;
 import entity.User;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginForm extends Form<User> {
-    @FindBy(css = "[id = 'Name']")
+    @FindBy(id = "name")
     public TextField name;
 
-    @FindBy(css = "[id = 'Password']")
+    @FindBy(id = "password")
     public TextField password;
 
     @FindBy(css = ".login [type = 'submit']")
